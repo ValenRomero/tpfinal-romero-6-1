@@ -17,7 +17,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   declarations: [
     AppComponent,
     InicioComponent,
-    CatalogoComponent,
+   CatalogoComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +26,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AngularFireStorageModule,
     AngularFireModule.initializeApp(environments.firebaseConfig),
     NgbModule,
+  
   ],
   providers: [],
   bootstrap: [AppComponent]
