@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Product } from 'src/app/models/product';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-admin',
@@ -8,29 +8,16 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent {
-
-  product = {
-    id: '',
-    titulo: '',
-    descripcion: '',
-    precio: '',
-    urlImagen: ''
+  product: Product = {
+    title: '',
+    description: '',
+    price: 0,
+    imageUrl: ''
   };
 
-  constructor(private modal: NgbActiveModal, private firestore: AngularFirestore) {}
+  constructor(private productService: ProductService) { }
 
-  saveProduct() {
-    this.firestore.collection('products').doc(this.product.id).set(this.product)
-      .then(() => {
-        console.log('Producto guardado exitosamente');
-        this.modal.close();
-      })
-      .catch(error => {
-        console.error('Error al guardar el producto: ', error);
-      });
-  }
-
-  dismiss() {
-    this.modal.dismiss();
+  onSubmit() {
+    this.productService.addProduct(this.product);
   }
 }

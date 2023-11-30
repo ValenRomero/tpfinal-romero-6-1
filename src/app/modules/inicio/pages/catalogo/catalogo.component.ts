@@ -1,25 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { ElectroService } from 'src/app/modules/admin/services/electro.service'; // Asegúrate de importar tu servicio de productos
-import { Electro } from 'src/app/models/electro';
+import { Product } from 'src/app/models/product';
+import { ProductService } from 'src/app/modules/services/product.service';
 @Component({
   selector: 'app-catalogo',
   templateUrl: './catalogo.component.html',
-  styleUrls: ['./catalogo.component.css'], // Ajusta la ruta según tu estructura de archivos
+  styleUrls: ['./catalogo.component.css'], 
 })
 export class CatalogoComponent implements OnInit {
-  productos: Electro[] = []; // Lista de productos
+  products: Product[] = [];
 
-  constructor(private ElectroService: ElectroService) {} // Inyecta el servicio de productos
+  constructor(private productService: ProductService) { }
 
-  ngOnInit(): void {
-    // Carga los datos de productos al inicializar el componente
-    this.loadProducts();
-  }
-
-  loadProducts() {
-    // Llama al servicio para obtener los productos desde tu fuente de datos (por ejemplo, Firestore)
-    this.ElectroService.getElectro().subscribe((data: Electro[]) => {
-      this.productos = data; // Asigna los productos a la lista
+  ngOnInit() {
+    this.productService.getProducts().subscribe(data => {
+      this.products = data.map(e => {
+        return {
+          ...e.payload.doc.data() as Product
+        } as Product;
+      })
     });
   }
 }
