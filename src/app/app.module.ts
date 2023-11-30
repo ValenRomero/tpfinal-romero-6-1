@@ -6,19 +6,15 @@ import { AppComponent } from './app.component';
 import { InicioComponent } from './modules/inicio/inicio.component';
 import { SharedModule } from './modules/shared/shared.module';
 import { environments } from 'src/environments';
-import { initializeApp } from 'firebase/app';
 
-import{AngularFireStorageModule}from '@angular/fire/compat/storage';
-import{AngularFireModule}from '@angular/fire/compat';
-import { CatalogoComponent } from './modules/inicio/pages/catalogo/catalogo.component';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { AngularFireModule } from '@angular/fire/compat';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CatalogoComponent } from './modules/inicio/pages/catalogo/catalogo.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    InicioComponent,
-   CatalogoComponent
-  ],
+  declarations: [AppComponent, InicioComponent, CatalogoComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -26,9 +22,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AngularFireStorageModule,
     AngularFireModule.initializeApp(environments.firebaseConfig),
     NgbModule,
-  
+    FormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
