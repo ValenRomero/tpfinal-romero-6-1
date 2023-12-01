@@ -1,0 +1,11 @@
+.carousel-inner{
+    display: block;
+    width: 200%;
+    height: 350px;
+    margin-top: 1cm;
+}
+.carousel-inner > .carousel-item > img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  
