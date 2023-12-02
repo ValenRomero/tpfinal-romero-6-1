@@ -1,0 +1,104 @@
+<table class="table m-3">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Titulo</th>
+        <th scope="col">Descripcion</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Imagen</th>
+        <th scope="col" colspan="2">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products; let i = index">
+        <th scope="row">{{i + 1}}</th>
+        <td>{{product.title}}</td>
+        <td>{{product.description | slice:0:50}}...</td>
+        <td>${{product.price| number}}</td>
+        <td><img [src]="product.imageUrl" alt="{{product.title}}" width="50"></td>
+        <td>
+          <button class="boton-add" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="openEditModal(product)">
+            <span class="material-symbols-outlined"> edit </span>
+          </button>
+        </td>
+        <td>
+          <button class="boton-delete" (click)="deleteProduct(product)">
+            <span class="material-symbols-outlined"> delete_forever </span>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <div>
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Editar producto</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form (ngSubmit)="editProduct()">
+                <div class="titulo">
+                  <label class="form-label mt-3"> Título: </label>
+                  <input
+                    class="form-control"
+                    [(ngModel)]="productToEdit.title"
+                    name="title"
+                    required
+                  />
+                </div>
+                <div class="descripcion">
+                  <label class="form-label mt-3"> Descripción: </label>
+                  <input
+                    class="form-control"
+                    [(ngModel)]="productToEdit.description"
+                    name="description"
+                    required
+                  />
+                </div>
+                <div class="precio">
+                  <label class="form-label mt-3"> Precio: </label>
+                  <input
+                    class="form-control"
+                    [(ngModel)]="productToEdit.price"
+                    name="price"
+                    required
+                  />
+                </div>
+                <div class="imagen">
+                  <label class="form-label mt-3"> URL de la imagen: </label>
+                  <input
+                    class="form-control"
+                    [(ngModel)]="productToEdit.imageUrl"
+                    name="imageUrl"
+                    required
+                  />
+                </div>
+                <div class="accion">
+                  <button class="btn btn-primary mt-3" type="submit" data-bs-dismiss="modal">
+                    Guardar cambios
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <p style="color: grey;">Si no desea agregar los cambios, en la parte superior puede rechazar el agregar producto.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
