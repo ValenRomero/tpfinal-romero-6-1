@@ -1,15 +1,72 @@
 <div class="contenido">
-  <div *ngFor="let product of products" class="card" style="width: 18rem">
-    <img
-      [src]="product.imageUrl"
-      class="card-img-top"
-      alt="{{ product.title }}"
-    />
-    <div class="card-body">
-      <h5 class="card-title">{{ product.title }}</h5>
-      <p class="card-text">{{ product.description }}</p>
-      <p class="card-text">Precio: {{ product.price }}</p>
-      <a href="#" class="btn btn-primary">Ver más</a>
+  <h1>Catalogo</h1>
+  <div class="row">
+    <div *ngFor="let product of products" class="col">
+      <div class="card" style="width: 18rem">
+        <img
+          [src]="product.imageUrl"
+          class="card-img-top"
+          alt="{{ product.title }}"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ product.title }}</h5>
+          <p class="card-text">{{ product.description | slice : 0 : 50 }}...</p>
+          <p class="card-text">Precio: ${{ product.price | number }}</p>
+          <button
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            (click)="openViewModal(product)"
+          >
+            Ver más
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div>
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            {{ productToView.title }}
+          </h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <img
+            style="display: flex; justify-content: center; align-items: center; margin-left: auto; margin-right: auto;"
+            [src]="productToView.imageUrl"
+            alt="{{ productToView.title }}"
+            width="60%"
+          />
+          <p>{{ productToView.description }}</p>
+          <p>Precio: ${{ productToView.price | number }}</p>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Cerrar
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
