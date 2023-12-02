@@ -12,6 +12,10 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CatalogoComponent } from './modules/inicio/pages/catalogo/catalogo.component';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [AppComponent, InicioComponent, CatalogoComponent],
@@ -22,7 +26,10 @@ import { FormsModule } from '@angular/forms';
     AngularFireStorageModule,
     AngularFireModule.initializeApp(environments.firebaseConfig),
     NgbModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent],
