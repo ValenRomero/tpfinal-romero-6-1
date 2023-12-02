@@ -9,6 +9,7 @@ import { ProductService } from '../services/product.service';
 })
 export class AdminComponent {
   product: Product = {
+    id: '',
     title: '',
     description: '',
     price: 0,

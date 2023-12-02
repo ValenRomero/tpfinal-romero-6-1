@@ -1,0 +1,20 @@
+.boton-add{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-color: rgba(0, 0, 0, 0.223);
+    background-color: rgba(93, 222, 93, 0.512);
+}
+.boton-delete{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-color: rgba(0, 0, 0, 0.223);
+    background-color: rgba(222, 117, 93, 0.512);
+}
